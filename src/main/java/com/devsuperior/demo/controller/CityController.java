@@ -35,4 +35,12 @@ public class CityController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(dto).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+
+        service.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
