@@ -21,4 +21,13 @@ public class CityService {
         Page<City> cities = cityRepository.findAll(pageable);
         return cities.map(city -> new CityDTO(city));
     }
+
+    @Transactional
+    public CityDTO insert(CityDTO dto){
+
+        City city = new City();
+        city.setName(dto.getName());
+        city = cityRepository.save(city);
+        return new CityDTO(city);
+    }
 }
